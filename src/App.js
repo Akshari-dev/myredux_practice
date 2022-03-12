@@ -1,24 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
+  const Store=useSelector((store)=>store)
+  let dispatch=useDispatch()
+console.warn(Store)
+  const handleMul=()=>{
+    dispatch({type:'MULTIPLY_NUM'})
+  }
+  console.warn(Store)
   return (
+    <>
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <div>Counter:{Store.calculator.count}</div>
+      <div><button onClick={handleMul}>MULT RESULT</button></div>
+      <div>
+        {Store.todoList.map(todo=><div>{todo}</div>)}
+      </div>
+        
       </header>
     </div>
+    </>
   );
 }
 
